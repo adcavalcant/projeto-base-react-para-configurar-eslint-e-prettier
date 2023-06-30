@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Configuração do Prettier com o ESLint para projetos React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este tutorial tem como objetivo mostrar como configurar o Prettier em conjunto com o ESLint para resolver conflitos entre as duas ferramentas e garantir uma formatação consistente de código em projetos React.
 
-## Available Scripts
+## Pré-requisitos
 
-In the project directory, you can run:
+Antes de começar, verifique se você possui os seguintes requisitos instalados:
 
-### `npm start`
+- Node.js
+- Yarn (ou NPM)
+- Visual Studio Code (ou outro editor de texto de sua preferência)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Passo a passo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Siga os passos abaixo para configurar corretamente o Prettier com o ESLint em seu projeto React:
 
-### `npm test`
+1. Crie uma configuração local do ESLint executando o seguinte comando no terminal:
+```
+yarn create @eslint/config
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Certifique-se de que os plugins ESLint e Prettier - Code formatter estejam instalados no seu editor de texto.
 
-### `npm run build`
+3. Instale as dependências necessárias executando o seguinte comando no terminal:
+```
+yarn add -D eslint-config-prettier prettier
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Abra o arquivo `.eslintrc` no diretório raiz do seu projeto e adicione `"prettier"` na seção `"extends"`, como mostrado abaixo:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```json
+{
+  "extends": [
+    "...",
+    "prettier"
+  ]
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. No arquivo settings.json do Visual Studio Code, adicione a seguinte configuração para formatar automaticamente o código ao salvar o projeto:
+```json
+[...]
+"editor.formatOnSave": true
+```
 
-### `npm run eject`
+6. Crie um arquivo settings.json no diretório .vscode do seu projeto e adicione o seguinte conteúdo para padronizar a formatação em arquivos JavaScript React.
+```json
+{
+  "editor.formatOnSave": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+7. Crie um arquivo extensions.json no diretório .vscode do seu projeto para recomendar extensões ao baixar o projeto em outra máquina:
+```json
+{
+  "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+8. Crie um arquivo .prettierrc no diretório raiz do seu projeto e defina as configurações do Prettier de acordo com suas preferências. Por exemplo:
+```json
+{
+  "singleQuote": true
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+9. No arquivo .eslintrc, remova ou ajuste as regras que não serão utilizadas no seu projeto. Por exemplo:
+```json
+"rules": {
+  "react/react-in-jsx-scope": "off"
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+10. Realize as personalizações desejadas nos arquivos .eslintrc e .prettierrc para ajustar as configurações de acordo com suas preferências.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Com essas configurações, você terá o Prettier e o ESLint funcionando em conjunto para garantir uma formatação consistente de código em seu projeto React. Certifique-se de reiniciar seu editor de texto para que as alterações tenham efeito.
